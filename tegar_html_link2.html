@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musiklopedia - Ticketing Konser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #001a33;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4') center/cover no-repeat;
+      color: #ffd500;
+      padding: 80px 20px;
+      text-align: center;
+      font-size: 42px;
+      font-weight: bold;
+      text-shadow: 0 0 15px #000;
+    }
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 30px auto;
+      background: #00264d;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .artist-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .artist-card {
+      background: #002040;
+      border: 2px solid #ffd500;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(255,213,0,0.3);
+      transition: 0.3s ease;
+    }
+    .artist-card h3 {
+      margin: 10px 0;
+      color: #ffd500;
+    }
+    .artist-card button {
+      background: #ffd500;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(255,213,0,0.4);
+    }
+    .artist-card button:hover {
+      background: #ffea66;
+      box-shadow: 0 0 20px #ffd500;
+      transform: scale(1.08);
+    }
+
+    /* FORM */
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color:white;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background: #ffd500;
+      color: #001a33;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    /* POPUP */
+    #ticketModal {
+      display:none;
+      position:fixed;
+      top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.75);
+      justify-content:center;
+      align-items:center;
+      z-index:9999;
+    }
+    #ticketModal form {
+      background:#00264d;
+      padding:20px;
+      border-radius:12px;
+      border:2px solid #ffd500;
+      box-shadow:0 0 20px rgba(255,213,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>Musiklopedia Festival 2025</header>
+
+  <section style="text-align:center; padding:60px 20px; color:#ffd500;">
+    <h1 style="font-size:50px; text-shadow:0 0 20px #000;">2 Hari Konser Spektakuler</h1>
+    <p style="font-size:20px; max-width:700px; margin:auto;">Nikmati penampilan 11 artis terbaik Indonesia dalam festival musik terbesar akhir tahun!</p>
+  </section>
+
+  <div class="container">
+    <h2 style="color:#ffd500;">Jadwal Artist</h2>
+
+    <h3 style="color:#ffd500; margin-top:20px;">Hari 1</h3>
+    <div class="artist-list">
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Tulus.jpeg" style="width:100%;border-radius:10px;"/><h3>Tulus</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Noah.jpeg" style="width:100%;border-radius:10px;"/><h3>NOAH</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Isyana.jpeg" style="width:100%;border-radius:10px;"/><h3>Isyana Sarasvati</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Fiersa.jpeg" style="width:100%;border-radius:10px;"/><h3>Fiersa Besari</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\FourTweny.jpeg" style="width:100%;border-radius:10px;"/><h3>Fourtwnty</h3></div>
+    </div>
+
+    <h3 style="color:#ffd500; margin-top:30px;">Hari 2</h3>
+    <div class="artist-list">
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Lomba Sihir.jpeg" style="width:100%;border-radius:10px;"/><h3>Lomba Sihir</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Feast.jpeg" style="width:100%;border-radius:10px;"/><h3>Feast</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\Hindia.jpeg" style="width:100%;border-radius:10px;"/><h3>Hindia</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\WisnuSantika.jpeg" style="width:100%;border-radius:10px;"/><h3>Whisnu Santika</h3></div>
+      <div class="artist-card" data-animate><img src="c:\Users\ASUS\Downloads\DNA.jpeg" style="width:100%;border-radius:10px;"/><h3>NDA</h3></div>
+    </div>
+
+    <h2 style="color:#ffd500; margin-top:40px;">List Tiket</h2>
+    <div class="artist-list">
+      <div class="artist-card">
+        <h3>Regular</h3>
+        <p>Tiket masuk area festival.</p>
+        <p><strong>Rp 250.000</strong></p>
+      </div>
+      <div class="artist-card">
+        <h3>VIP</h3>
+        <p>Akses dekat panggung + lounge.</p>
+        <p><strong>Rp 650.000</strong></p>
+      </div>
+      <div class="artist-card">
+        <h3>VVIP</h3>
+        <p>Tempat duduk eksklusif + akses premium.</p>
+        <p><strong>Rp 1.200.000</strong></p>
+      </div>
+    </div>
+
+    <h2 style="color:#ffd500; margin-top:40px;">Paket Spesial</h2>
+    <div class="artist-list">
+      <div class="artist-card">
+        <h3>Paket Duo</h3>
+        <p>2 Tiket VIP + Merchandise</p>
+        <p><strong>Rp 1.200.000</strong></p>
+      </div>
+      <div class="artist-card">
+        <h3>Paket Squad</h3>
+        <p>4 Tiket Regular + Bonus Minuman</p>
+        <p><strong>Rp 800.000</strong></p>
+      </div>
+      <div class="artist-card">
+        <h3>Paket Sultan</h3>
+        <p>2 Tiket VVIP + Backstage Tour</p>
+        <p><strong>Rp 2.800.000</strong></p>
+      </div>
+
+    <h2 style="color:#ffd500; margin-top:40px;">Form Pembelian Tiket</h2>
+
+    <!-- Tombol -->
+    <button id="openModal" style="
+      background:#ffd500;
+      color:#001a33;
+      padding:12px 18px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:bold;
+      box-shadow:0 0 15px rgba(255,213,0,0.5);
+    ">Pesan Tiket</button>
+
+    <!-- Popup -->
+    <!-- Popup -->
+<div id="ticketModal">
+  <div style="background:#00264d; padding:25px; border-radius:12px; width:90%; max-width:450px; border:2px solid #ffd500;">
+    <h2 style="color:#ffd500; text-align:center;">Form Pemesanan Tiket</h2>
+
+    <form id="ticketForm">
+
+      <label>No KTP</label>
+      <input type="text" name="ktp" required />
+
+      <label>Nama</label>
+      <input type="text" name="nama" required />
+
+      <label>No Telp</label>
+      <input type="text" name="telp" required />
+
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <!-- PILIHAN PAKET -->
+      <label>Pilih Paket Tiket</label>
+      <select id="paketSelect" name="paket" required>
+        <option value="">-- Pilih Paket --</option>
+        <option value="Regular">Regular - Rp 150.000</option>
+        <option value="VIP">VIP - Rp 350.000</option>
+        <option value="VVIP">VVIP - Rp 850.000</option>
+      </select>
+
+      <!-- HARGA OTOMATIS -->
+      <label>Harga</label>
+      <input type="text" id="hargaPaket" readonly style="background:#eee; font-weight:bold;" />
+
+      <label>Pembayaran</label>
+      <select name="metode" required>
+        <option value="qris">QRIS</option>
+        <option value="va_bca">VA BCA</option>
+        <option value="va_bni">VA BNI</option>
+        <option value="va_bri">VA BRI</option>
+      </select>
+
+      <button type="submit"
+        style="margin-top:15px; background:#ffd500; padding:12px; width:100%; border:none; border-radius:8px; cursor:pointer; font-size:17px; font-weight:bold;">
+        Konfirmasi Pesanan
+      </button>
+    </form>
+
+    <button id="closeModal" style="
+      margin-top:10px;
+      background:#ff4040;
+      color:white;
+      padding:10px;
+      width:100%;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+    ">Tutup</button>
+  </div>
+</div>
+
+<script>
+  // HARGA OTOMATIS
+  document.getElementById("paketSelect").addEventListener("change", function () {
+    let harga = "";
+    if (this.value === "Regular") harga = "150.000";
+    if (this.value === "VIP") harga = "350.000";
+    if (this.value === "VVIP") harga = "850.000";
+    document.getElementById("hargaPaket").value = "Rp " + harga;
+  });
+
+  // KONFIRMASI PESANAN
+  document.getElementById("ticketForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    alert("🎉 Pesanan Berhasil!\nE-ticket sedang dibuat...");
+
+    // lanjutkan ke pembuatan e-ticket
+    generateETicket();
+  });
+
+  // FUNGSI PEMBUATAN E-TICKET (akan disempurnakan setelah kamu konfirmasi)
+  function generateETicket() {
+    function generateETicket() {
+  document.getElementById("ticketModal").style.display = "none";
+
+  const form = document.getElementById("ticketForm");
+
+  document.getElementById("tNama").textContent = form.nama.value;
+  document.getElementById("tKTP").textContent = form.ktp.value;
+  document.getElementById("tTelp").textContent = form.telp.value;
+  document.getElementById("tPaket").textContent = form.paket.value;
+  document.getElementById("tHarga").textContent = document.getElementById("hargaPaket").value;
+  document.getElementById("tMetode").textContent = form.metode.value;
+
+  document.getElementById("eticketBox").style.display = "block";
+
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+  }
+</script>
+
+
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.style.opacity = 1;
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transition = '1s';
+      observer.observe(el);
+    });
+
+    // POPUP SCRIPT
+    const modal = document.getElementById('ticketModal');
+    document.getElementById('openModal').onclick = () => modal.style.display = 'flex';
+    document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+  </script>
+<!-- E-TICKET (muncul setelah pemesanan) -->
+<div id="eticketBox" style="
+  display:none;
+  background:#00264d;
+  padding:25px;
+  margin:20px auto;
+  width:95%;
+  max-width:450px;
+  border-radius:12px;
+  border:2px solid #ffd500;
+  color:white;
+  box-shadow:0 0 20px rgba(255,213,0,0.5);
+">
+  <h2 style="color:#ffd500; text-align:center;">🎫 E-Ticket Resmi</h2>
+  <p><b>Nama:</b> <span id="tNama"></span></p>
+  <p><b>No KTP:</b> <span id="tKTP"></span></p>
+  <p><b>No Telp:</b> <span id="tTelp"></span></p>
+  <p><b>Paket:</b> <span id="tPaket"></span></p>
+  <p><b>Harga:</b> <span id="tHarga"></span></p>
+  <p><b>Status:</b> LUNAS via <span id="tMetode"></span></p>
+
+  <button onclick="window.print()" style="
+    margin-top:15px; 
+    background:#ffd500; 
+    color:#001a33; 
+    padding:12px; 
+    width:100%; 
+    border:none; 
+    border-radius:8px; 
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;">
+    Cetak E-Ticket
+  </button>
+</div>
+
+
+</body>
+</html>
+

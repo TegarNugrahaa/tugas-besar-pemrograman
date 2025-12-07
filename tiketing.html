@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MUSIKLOPEDIA FESTIVAL 2025 — E-Ticket</title>
+  <style>
+    :root{
+      --navy:#001a33;
+      --card:#012742;
+      --gold:#ffd500;
+      --accent:#00a3ff;
+      --muted:#d9edff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,var(--navy),#001733 70%);
+      color:var(--muted);
+      padding:30px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{max-width:920px;margin:0 auto;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+    .ticket{
+      background:var(--card);border-radius:14px;padding:22px;border:2px solid rgba(255,213,0,0.08);
+      box-shadow:0 18px 40px rgba(0,0,0,0.6);
+    }
+
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#ffd36a);
+      display:flex;align-items:center;justify-content:center;font-weight:900;color:#001a33;font-size:18px;
+    }
+    .title h1{margin:0;color:var(--gold);font-size:20px;letter-spacing:1px}
+    .title p{margin:2px 0 0;color:#aee0ff;font-size:13px}
+
+    .info{margin-top:18px;padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.02))}
+    .info-row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(255,255,255,0.03)}
+    .info-row:last-child{border-bottom:none}
+    .label{color:#bfe8ff;font-size:13px}
+    .value{color:var(--muted);font-weight:700}
+
+    .meta{margin-top:18px;display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .meta .code{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-weight:800;color:var(--gold)}
+    .print-btn{background:var(--gold);border:none;color:#001a33;padding:12px 14px;border-radius:10px;font-weight:800;cursor:pointer}
+
+    /* right column */
+    .side{display:flex;flex-direction:column;gap:12px}
+    .qr-card{background:rgba(255,255,255,0.03);padding:14px;border-radius:12px;text-align:center}
+    .contact{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;text-align:center;color:#cfe9ff;font-size:13px}
+
+    .small{font-size:13px;color:#bfe8ff}
+
+    @media (max-width:880px){
+      .wrap{grid-template-columns:1fr; padding:0 8px}
+      .side{order:2}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="ticket">
+      <div class="brand">
+        <div class="logo">MF</div>
+        <div class="title">
+          <h1>MUSIKLOPEDIA FESTIVAL 2025</h1>
+          <p class="small">2 Hari Konser • Lokasi: Jakarta (contoh)</p>
+        </div>
+      </div>
+
+      <div id="infoBox" class="info" aria-live="polite">
+        <div class="info-row"><div class="label">Nama</div><div class="value" id="tNama">—</div></div>
+        <div class="info-row"><div class="label">No KTP</div><div class="value" id="tKTP">—</div></div>
+        <div class="info-row"><div class="label">No Telp</div><div class="value" id="tTelp">—</div></div>
+        <div class="info-row"><div class="label">Email</div><div class="value" id="tEmail">—</div></div>
+        <div class="info-row"><div class="label">Paket</div><div class="value" id="tPaket">—</div></div>
+        <div class="info-row"><div class="label">Harga</div><div class="value" id="tHarga">—</div></div>
+      </div>
+
+      <div class="meta">
+        <div class="code" id="ticketCode">TKT000000</div>
+        <button class="print-btn" onclick="window.print()">Cetak / Download</button>
+      </div>
+
+      <p class="small" style="margin-top:12px">Tunjukkan e-ticket ini di pintu masuk. Simpan bukti pembayaran jika diperlukan.</p>
+    </div>
+
+    <aside class="side">
+      <div class="qr-card">
+        <div style="margin-bottom:10px;font-weight:700;color:var(--gold)">QR Code Tiket</div>
+        <img id="" alt="QR Code" style="width:200px;height:200px;border-radius:8px;background:white" src="QRIS.png">
+        <div class="small" style="margin-top:8px">Scan untuk cek detail tiket</div>
+      </div>
+
+      <div class="contact">
+        <div style="font-weight:700;color:var(--gold)">Hubungi Panitia</div>
+        <div style="margin-top:6px">WhatsApp: +62 896-7456-9165</div>
+        <div style="margin-top:6px" id="issuedAt">—</div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Ambil data dari URL params
+    const params = new URLSearchParams(window.location.search);
+    const nama  = params.get('nama') || params.get('Nama') || 'Tegar';
+    const ktp   = params.get('ktp') || '000011101010101';
+    const telp  = params.get('telp') || '089674569165';
+    const email = params.get('email') || 'Tegarnugraha3005@gmail'.com;
+    const paket = params.get('paket') || 'VIP';
+    const harga = params.get('harga') || '650.000';
+    const metode= params.get('metode') || 'QRIS';
+
+    // assign ke DOM
+    document.getElementById('tNama').textContent = decodeURIComponent(nama);
+    document.getElementById('tKTP').textContent = decodeURIComponent(ktp);
+    document.getElementById('tTelp').textContent = decodeURIComponent(telp);
+    document.getElementById('tEmail').textContent = decodeURIComponent(email);
+    document.getElementById('tPaket').textContent = decodeURIComponent(paket);
+    document.getElementById('tHarga').textContent = decodeURIComponent(harga);
+
+    // create ticket code (unique)
+    const unique = 'MF' + Date.now().toString().slice(-6);
+    document.getElementById('ticketCode').textContent = unique;
+
+    // issued at
+    const now = new Date();
+    document.getElementById('issuedAt').textContent = 'Diterbitkan: ' + now.toLocaleString('id-ID');
+
+    // build QR payload (simple JSON)
+    const payloadObj = {
+      event: 'MUSIKLOPEDIA FESTIVAL 2025',
+      ticket: unique,
+      nama: decodeURIComponent(nama),
+      paket: decodeURIComponent(paket),
+      harga: decodeURIComponent(harga)
+    };
+    const payload = encodeURIComponent(JSON.stringify(payloadObj));
+
+    // Google Chart API QR Code
+    const qrSize = 400;
+    const qrURL = `https://chart.googleapis.com/chart?chs=${qrSize}x${qrSize}&cht=qr&chl=${payload}&chld=L|1`;
+    document.getElementById('qrImg').src = qrURL;
+
+    // Optional: save to session (so page can be re-opened)
+    sessionStorage.setItem('lastTicket', JSON.stringify({ unique, nama, ktp, telp, email, paket, harga, metode }));
+
+  </script>
+</body>
+</html>
